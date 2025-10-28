@@ -1,16 +1,16 @@
-🧭 User and Account Management System (UAMS)
+🧭 Simple User & Account Management System (SUAMS)
 📘 Overview
 
-The User and Account Management System (UAMS) is a backend service built on ASP.NET Core (.NET 9).
+The Simple User & Account Management System is a backend service built on ASP.NET Core (.NET 9).
 It manages users, roles, permissions, banks, accounts, and transactions in a structured way.
 
 📁 Folder Structure
 UserAndAccountManagementSystem/
 │
-├── UAMS.API/              → Presentation Layer (Controllers, Swagger, Authentication)
-├── UAMS.Application/      → Application Core (CQRS, MediatR, Validation, Mapping)
-├── UAMS.Domain/           → Enterprise Core (Entities, Value Objects, Interfaces)
-└── UAMS.Infrastructure/   → Data & External Services (EF Core, Repositories, External Providers)
+├── SUAMS.API/              → Presentation Layer (Controllers, Swagger, Authentication)
+├── SUAMS.Application/      → Application Core (CQRS, MediatR, Validation, Mapping)
+├── SUAMS.Domain/           → Enterprise Core (Entities, Value Objects, Interfaces)
+└── SUAMS.Infrastructure/   → Data & External Services (EF Core, Repositories, External Providers)
 
 🧩 Core Entities
 User
