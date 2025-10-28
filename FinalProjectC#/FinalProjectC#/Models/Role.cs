@@ -1,12 +1,10 @@
-﻿using System.Security;
+﻿using FinalProjectC_.Models;
 
-namespace FinalProjectC_.Models
+public class Role : AuditableEntity
 {
-    public class Role
-    {
-        public int Id { get; set; }
-        public string RoleName { get; set; } = string.Empty;
+    public int Id { get; set; }
+    public string RoleName { get; set; } = string.Empty;
 
-        public ICollection<Permission>? Permissions { get; set; }
-    }
+    public ICollection<Permission>? Permissions { get; set; }
+    public ICollection<User>? Users { get; set; }
 }

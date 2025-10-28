@@ -1,36 +1,71 @@
+using FinalProjectC_.Data;
 
-namespace FinalProjectC_
+using Microsoft.EntityFrameworkCore;
+
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+
+using Microsoft.IdentityModel.Tokens;
+
+using System.Text;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// DbContext
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// JWT Authentication
+
+builder.Services.AddAuthentication(options =>
+
 {
-    public class Program
+
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+})
+
+.AddJwtBearer(options =>
+
+{
+
+    options.TokenValidationParameters = new TokenValidationParameters
+
     {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+        ValidateIssuer = false,
 
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+        ValidateAudience = false,
 
-            var app = builder.Build();
+        ValidateLifetime = true,
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+        ValidateIssuerSigningKey = true,
 
-            app.UseHttpsRedirection();
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("YOUR_SECRET_KEY_HERE"))
 
-            app.UseAuthorization();
+    };
 
+});
 
-            app.MapControllers();
+builder.Services.AddControllers();
 
-            app.Run();
-        }
-    }
-}
+builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
+app.UseSwagger();
+
+app.UseSwaggerUI();
+
+app.UseAuthentication();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();

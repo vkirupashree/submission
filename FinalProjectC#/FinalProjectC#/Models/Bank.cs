@@ -1,11 +1,9 @@
-﻿namespace FinalProjectC_.Models
-{
-    public class Bank
-    {
-        public int Id { get; set; }
-        public string BankName { get; set; } = string.Empty;
+﻿using FinalProjectC_.Models;
 
-        // Navigation
-        public ICollection<Branch>? Branches { get; set; }
-    }
+public class Bank : AuditableEntity
+{
+    public int Id { get; set; }
+    public string BankName { get; set; } = string.Empty;
+
+    public ICollection<Branch>? Branches { get; set; }
 }

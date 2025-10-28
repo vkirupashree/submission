@@ -1,8 +1,8 @@
-﻿namespace FinalProjectC_.Models
+﻿using FinalProjectC_.Models;
+
+public class Permission : AuditableEntity
 {
-    public class Permission
-    {
-        public int Id { get; set; }
-        public string PermissionName { get; set; } = string.Empty;
-    }
+    public int Id { get; set; }
+    public string PermissionName { get; set; } = string.Empty;
+    public ICollection<Role>? Roles { get; set; }
 }
