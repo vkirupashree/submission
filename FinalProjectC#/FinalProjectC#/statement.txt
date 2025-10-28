@@ -1,0 +1,118 @@
+﻿
+TITLE
+------
+Simple User & Account Management System
+ 
+ 
+OVERVIEW
+---------
+This project implements a simplified yet structured banking management system 
+designed to manage Users (Customers and Bank Employees), Banks, Branches, and 
+Accounts.
+ 
+The system supports multiple banks and branches, multiple account types 
+(Savings, Current, Term Deposit), and multi-currency (for NRI accounts). 
+It enables account operation by minors or via Power of Attorney (POA).
+ 
+It uses role- and permission-based access control to secure all endpoints, 
+with JWT-based authentication and role-based authorization.  
+ 
+The API layer (to be implemented in Sprint 1) will expose secure REST endpoints 
+for managing Users, Banks, and Accounts.
+ 
+ 
+EXPLICIT REQUIREMENTS (FROM TRAINER)
+-------------------------------------
+1. **Users**
+   - Two categories: Normal Users (Customers) and Bank Users (Employees).
+   - Each User can hold multiple Accounts across different Banks and Branches.
+   - Each User has Roles and Permissions defining their privileges.
+ 
+2. **Banks and Branches**
+   - A Bank may contain multiple Branches.
+   - Branches are associated with one Bank.
+   - Each Branch can host multiple Accounts.
+ 
+3. **Accounts**
+   - Three types of Accounts:
+       a. Savings Account  
+       b. Current Account  
+       c. Term Deposit (specialized type of Savings Account)
+   - Accounts can be operated by minors or by proxy (Power of Attorney).
+   - Multi-currency accounts are supported for NRI users.
+   - All Account operations include:
+       • Deposit (limited by rules)
+       • Withdraw (limited by balance and policy)
+       • Close Account (restricted)
+       • Operate Account (restricted)
+       • Check Balance (restricted)
+ 
+4. **Authorization**
+   - Every API call must be **authenticated**.
+   - Authorization determines whether the user has sufficient permissions.
+   - Access is controlled using Roles and Permissions.
+ 
+5. **Database Layer**
+   - Database: `training`
+   - Schema: `training`
+   - All tables must include audit columns:
+       • CreatedBy, CreatedOn  
+       • ModifiedBy, ModifiedOn
+   - SQL Server 2019+ / SSMS 19.
+   - No JSON or hardcoded seed data — data is inserted via SQL scripts.
+ 
+6. **Entity Framework (EF Core)**
+   - Use EF Core Code-First approach with `AppDbContext` class.
+   - Context variable name: `_context`.
+   - Use `OnModelCreating` and fluent API configurations.
+   - Account inheritance implemented via Table-Per-Hierarchy (TPH).
+   - Use `decimal(18,2)` for all currency fields.
+   - Enforce unique constraints on Username, Email, and AccountNumber.
+ 
+7. **API Requirements (for Sprint 1)**
+   - Endpoints:
+       • `/api/users`
+       • `/api/accounts`
+       • `/api/banks`
+       • `/api/login`
+   - All APIs authenticated; certain actions (create/update/delete) 
+     require explicit authorization.
+   - Proper HTTP response codes must be returned for all operations.
+ 
+8. **Validation**
+   - Withdrawals cannot exceed balance or pre-set limits.
+   - Account creation/update must validate all mandatory fields.
+   - Minor or POA accounts require proper linking and verification.
+ 
+9. **Quality Attributes**
+   - Follow SOLID principles and clean code architecture.
+   - Implement Dependency Injection (DI) for all services.
+   - Maintain logging and exception handling.
+   - Conform to standard C# and REST API coding conventions.
+ 
+ 
+IMPLICIT REQUIREMENTS / QUALITY ATTRIBUTES
+-------------------------------------------
+- Secure authentication via JWT tokens.
+- Role-based authorization.
+- Proper audit trail and modification tracking.
+- Data integrity via foreign keys and constraints.
+- All string fields have reasonable maximum lengths.
+- Decimal type used for all money values.
+- Proper naming conventions for entities, navigation properties, and FK columns.
+- Clear error responses and status codes in APIs.
+- Readable, maintainable codebase with layered architecture:
+     • Controllers
+     • Services (Interfaces + Implementations)
+     • Models (Entities)
+     • Data (DbContext)
+     • Auth (JWT handling)
+- Documentation and consistent code organization.
+- Unit tests (to be planned for Sprint 2).
+ 
+ 
+NOTES
+------
+- This Sprint 0 focuses purely on data design and entity structure.
+- API implementation (Sprint 1) will consume this schema through EF Core.
+- All testing in Sprint 0 will be done via SQL queries and SSMS validation.
