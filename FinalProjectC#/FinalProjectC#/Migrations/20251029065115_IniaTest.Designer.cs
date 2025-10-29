@@ -4,6 +4,7 @@ using FinalProjectC_.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinalProjectC_.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251029065115_IniaTest")]
+    partial class IniaTest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,7 +26,7 @@ namespace FinalProjectC_.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("FinalProjectC_.Models.Account", b =>
+            modelBuilder.Entity("Account", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -97,7 +100,7 @@ namespace FinalProjectC_.Migrations
                     b.ToTable("Accounts", "training");
                 });
 
-            modelBuilder.Entity("FinalProjectC_.Models.Bank", b =>
+            modelBuilder.Entity("Bank", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -126,7 +129,7 @@ namespace FinalProjectC_.Migrations
                     b.ToTable("Banks", "training");
                 });
 
-            modelBuilder.Entity("FinalProjectC_.Models.Branch", b =>
+            modelBuilder.Entity("Branch", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -164,13 +167,13 @@ namespace FinalProjectC_.Migrations
                     b.ToTable("Branches", "training");
                 });
 
-            modelBuilder.Entity("FinalProjectC_.Models.Permission", b =>
+            modelBuilder.Entity("FinalProjectC_.Models.RolePermission", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("RoleId")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<int>("PermissionId")
+                        .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -184,42 +187,11 @@ namespace FinalProjectC_.Migrations
                     b.Property<DateTimeOffset?>("ModifiedOn")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("PermissionName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("RoleId", "PermissionId");
 
-                    b.HasKey("Id");
+                    b.HasIndex("PermissionId");
 
-                    b.ToTable("Permissions", "training");
-                });
-
-            modelBuilder.Entity("FinalProjectC_.Models.Role", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset>("CreatedOn")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset?>("ModifiedOn")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("RoleName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Roles", "training");
+                    b.ToTable("RolePermissions", "training");
                 });
 
             modelBuilder.Entity("FinalProjectC_.Models.User", b =>
@@ -267,6 +239,62 @@ namespace FinalProjectC_.Migrations
                     b.ToTable("Users", "training");
                 });
 
+            modelBuilder.Entity("FinalProjectC_.Models.UserRole", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("ModifiedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("UserRoles", "training");
+                });
+
+            modelBuilder.Entity("Permission", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("ModifiedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("PermissionName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Permissions", "training");
+                });
+
             modelBuilder.Entity("PermissionRole", b =>
                 {
                     b.Property<int>("PermissionsId")
@@ -280,6 +308,35 @@ namespace FinalProjectC_.Migrations
                     b.HasIndex("RolesId");
 
                     b.ToTable("PermissionRole", "training");
+                });
+
+            modelBuilder.Entity("Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("ModifiedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles", "training");
                 });
 
             modelBuilder.Entity("RoleUser", b =>
@@ -297,9 +354,9 @@ namespace FinalProjectC_.Migrations
                     b.ToTable("RoleUser", "training");
                 });
 
-            modelBuilder.Entity("FinalProjectC_.Models.Account", b =>
+            modelBuilder.Entity("Account", b =>
                 {
-                    b.HasOne("FinalProjectC_.Models.Branch", "Branch")
+                    b.HasOne("Branch", "Branch")
                         .WithMany("Accounts")
                         .HasForeignKey("BranchId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -316,9 +373,9 @@ namespace FinalProjectC_.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("FinalProjectC_.Models.Branch", b =>
+            modelBuilder.Entity("Branch", b =>
                 {
-                    b.HasOne("FinalProjectC_.Models.Bank", "Bank")
+                    b.HasOne("Bank", "Bank")
                         .WithMany("Branches")
                         .HasForeignKey("BankId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -327,15 +384,53 @@ namespace FinalProjectC_.Migrations
                     b.Navigation("Bank");
                 });
 
+            modelBuilder.Entity("FinalProjectC_.Models.RolePermission", b =>
+                {
+                    b.HasOne("Permission", "Permission")
+                        .WithMany("RolePermissions")
+                        .HasForeignKey("PermissionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Role", "Role")
+                        .WithMany("RolePermissions")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Permission");
+
+                    b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("FinalProjectC_.Models.UserRole", b =>
+                {
+                    b.HasOne("Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FinalProjectC_.Models.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("PermissionRole", b =>
                 {
-                    b.HasOne("FinalProjectC_.Models.Permission", null)
+                    b.HasOne("Permission", null)
                         .WithMany()
                         .HasForeignKey("PermissionsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FinalProjectC_.Models.Role", null)
+                    b.HasOne("Role", null)
                         .WithMany()
                         .HasForeignKey("RolesId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -344,7 +439,7 @@ namespace FinalProjectC_.Migrations
 
             modelBuilder.Entity("RoleUser", b =>
                 {
-                    b.HasOne("FinalProjectC_.Models.Role", null)
+                    b.HasOne("Role", null)
                         .WithMany()
                         .HasForeignKey("RolesId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -357,12 +452,12 @@ namespace FinalProjectC_.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("FinalProjectC_.Models.Bank", b =>
+            modelBuilder.Entity("Bank", b =>
                 {
                     b.Navigation("Branches");
                 });
 
-            modelBuilder.Entity("FinalProjectC_.Models.Branch", b =>
+            modelBuilder.Entity("Branch", b =>
                 {
                     b.Navigation("Accounts");
                 });
@@ -370,6 +465,20 @@ namespace FinalProjectC_.Migrations
             modelBuilder.Entity("FinalProjectC_.Models.User", b =>
                 {
                     b.Navigation("Accounts");
+
+                    b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("Permission", b =>
+                {
+                    b.Navigation("RolePermissions");
+                });
+
+            modelBuilder.Entity("Role", b =>
+                {
+                    b.Navigation("RolePermissions");
+
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

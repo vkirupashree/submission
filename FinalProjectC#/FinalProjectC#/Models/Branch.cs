@@ -1,13 +1,30 @@
-﻿using FinalProjectC_.Models;
+﻿using System;
 
-public class Branch : AuditableEntity
+using System.Collections.Generic;
+
+using System.ComponentModel.DataAnnotations;
+
+namespace FinalProjectC_.Models
+
 {
-    public int Id { get; set; }
-    public string BranchName { get; set; } = string.Empty;
-    public string Address { get; set; } = string.Empty;
 
-    public int BankId { get; set; }
-    public Bank? Bank { get; set; }
+    public class Branch : AuditableEntity
 
-    public ICollection<Account>? Accounts { get; set; }
+    {
+
+        public int Id { get; set; }
+
+        public string BranchName { get; set; } = string.Empty;
+
+        public string Address { get; set; } = string.Empty;
+
+        public int BankId { get; set; }
+
+        public Bank? Bank { get; set; }
+
+        public ICollection<Account>? Accounts { get; set; }
+
+    }
+
 }
+

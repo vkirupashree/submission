@@ -1,8 +1,6 @@
-﻿
-
-namespace FinalProjectC_.Models
+﻿namespace FinalProjectC_.Models
 {
-    public class UserRole
+    public class UserRole : AuditableEntity
     {
         public long UserId { get; set; }
         public User User { get; set; } = null!;

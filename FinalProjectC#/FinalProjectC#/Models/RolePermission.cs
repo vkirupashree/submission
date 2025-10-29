@@ -1,6 +1,6 @@
 ﻿namespace FinalProjectC_.Models
 {
-    public class RolePermission
+    public class RolePermission : AuditableEntity
     {
         public long RoleId { get; set; }
         public Role Role { get; set; } = null!;

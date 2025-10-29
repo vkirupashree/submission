@@ -1,8 +1,13 @@
-﻿using FinalProjectC_.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-public class Permission : AuditableEntity
+namespace FinalProjectC_.Models
 {
-    public int Id { get; set; }
-    public string PermissionName { get; set; } = string.Empty;
-    public ICollection<Role>? Roles { get; set; }
+    public class Permission : AuditableEntity
+    {
+        public int Id { get; set; }
+        public string PermissionName { get; set; } = string.Empty;
+        public ICollection<Role>? Roles { get; set; }
+    }
 }
