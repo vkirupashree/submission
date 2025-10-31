@@ -253,62 +253,175 @@ footer p {
   margin: 0;
   font-size: 14px;
 }
+/* ---------------------- TRAVEL EXPERIENCES ROW ---------------------- */
 
-/* TRAVELS SECTION STYLES */
-#travels {
-  display: flex;                  /* flex container */
-  justify-content: center;
+/* Container for the three boxes in a row */
+#travels-row {
+  display: flex;                  /* row layout */
+  justify-content: center;        /* center horizontally */
   align-items: flex-start;
-  gap: 30px;
+  gap: 20px;                      /* space between boxes */
   padding: 50px 0;
-  flex-wrap: wrap;                /* wrap on smaller screens */
+  flex-wrap: wrap;                /* allow wrapping when needed */
+  width: 100%;
 }
 
 /* Travel Boxes */
-#travels .travel-box {
+#travels-row .travel-box {
   background: #e6f3ff;
-  width: 400px;
-  padding: 20px;
+  flex: 1;                        /* equal width for all boxes */
+  min-width: 250px;               /* ensures boxes don't shrink too much */
+  max-width: 300px;               /* optional max width */
+  padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   text-align: left;
-  transition: 0.3s;
-}
-
-/* Left box border */
-#travels > .travel-box:first-child {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-left: 6px solid #0077cc;
+  display: flex;
+  flex-direction: column;         /* vertical stack inside */
 }
 
-/* Right box border */
-#travels .travel-box + .travel-box {
-  border-left: 6px solid #004c99;
+/* Hover effect for boxes */
+#travels-row .travel-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+}
+
+/* Headings with stars */
+#travels-row h3.star1::before {
+  content: "* ";
+  color: #0077cc;
+  font-weight: bold;
+}
+
+#travels-row h3.star2::before {
+  content: "** ";
+  color: #0077cc;
+  font-weight: bold;
 }
 
 /* Titles */
-#travels h3 {
+#travels-row h3 {
   font-size: 22px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   font-weight: 600;
   color: #0077cc;
 }
 
-/* List items inline */
-#travels ul {
+/* List items stacked vertically */
+#travels-row ul {
   padding: 0;
   margin: 0;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 10px;
 }
 
-#travels ul li {
+#travels-row ul li {
   list-style: none;
-  font-size: 14px;
+  font-size: 16px;
   background: #fff;
-  padding: 6px 10px;
+  padding: 10px 12px;
   border-radius: 6px;
   border: 1px solid #0077cc;
   color: #004c99;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover effect for list items */
+#travels-row ul li:hover {
+  background-color: #66b2ff; /* light blue hover */
+  color: white;
+  cursor: pointer;
+}
+
+/* ---------------------- RESPONSIVE ---------------------- */
+/* On screens smaller than 768px, stack boxes vertically */
+@media (max-width: 768px) {
+  #travels-row {
+    flex-direction: column;   /* stack vertically */
+    align-items: center;      /* center the stacked boxes */
+    gap: 25px;                /* slightly larger gap for vertical layout */
+  }
+
+  #travels-row .travel-box {
+    width: 80%;               /* make boxes wider for mobile screens */
+    max-width: 90%;
+  }
+}
+
+
+
+/* GitHub button (blue theme) */
+.github-footer{
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.github-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #0077cc;    /* main blue */
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 8px 20px;
+  border-radius: 25px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* GitHub logo */
+.github-button img {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0) invert(1); /* white logo initially */
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* ✅ Hover effect */
+.github-button:hover {
+  background-color: #004c99;      /* darker blue on hover */
+  transform: translateY(-2px);
+}
+
+/* ✅ GitHub logo turns light blue on hover */
+.github-button:hover img {
+  filter: invert(60%) sepia(30%) saturate(400%) hue-rotate(170deg) brightness(100%) contrast(90%);
+  transform: scale(1.1);
+}
+
+/* Container for the two boxes */
+#info-boxes {
+  display: flex;                  /* side by side */
+  justify-content: center;        /* center horizontally */
+  align-items: flex-start;
+  gap: 30px;                      /* space between boxes */
+  padding: 50px 0;
+  flex-wrap: wrap;                /* wrap on small screens */
+}
+
+/* Individual boxes */
+#info-boxes .info-box {
+  background-color: #e6f3ff;      /* light blue background */
+  width: 500px;                   /* increased width */
+  padding: 30px;                  /* increased padding */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  border-bottom: 6px solid #0077cc; /* main blue left border */
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+
+/* Paragraph styling */
+#info-boxes .info-box p {
+  color: #004c99;   /* darker blue text */
+  font-size: 18px;  /* slightly larger text */
+  line-height: 1.6;
+  margin: 0;
 }
 

@@ -1,0 +1,105 @@
+/* ---------------------- TRAVEL EXPERIENCES ROW ---------------------- */
+
+h1 {
+  text-align: center;       /* center the text */
+  color: #1c5d33;           /* dark green color */
+  font-weight: 700;         /* optional: make it bold */
+  font-size: 32px;          /* optional: adjust size */
+  margin-bottom: 20px;      /* optional: spacing below */
+}
+
+/* Container for the three boxes in a row */
+#travels-row {
+  display: flex;                  /* row layout */
+  justify-content: center;        /* center horizontally */
+  align-items: flex-start;
+  gap: 20px;                      /* space between boxes */
+  padding: 50px 0;
+  flex-wrap: wrap;                /* allow wrapping when needed */
+  width: 100%;
+}
+
+/* Travel Boxes */
+#travels-row .travel-box {
+  background: #e6ffe6;            /* light green background */
+  flex: 1;                        /* equal width for all boxes */
+  min-width: 250px;               /* ensures boxes don't shrink too much */
+  max-width: 300px;               /* optional max width */
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 6px solid #28a745; /* green left border */
+  display: flex;
+  flex-direction: column;         /* vertical stack inside */
+}
+
+/* Hover effect for boxes */
+#travels-row .travel-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+}
+
+/* Headings with stars */
+#travels-row h3.star1::before {
+  content: "* ";
+  color: #28a745;                 /* green star */
+  font-weight: bold;
+}
+
+#travels-row h3.star2::before {
+  content: "** ";
+  color: #28a745;                 /* green star */
+  font-weight: bold;
+}
+
+/* Titles */
+#travels-row h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #28a745;                 /* green title text */
+}
+
+/* List items stacked vertically */
+#travels-row ul {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#travels-row ul li {
+  list-style: none;
+  font-size: 16px;
+  background: #fff;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #28a745;     /* green border */
+  color: #1c5d33;                 /* dark green text */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover effect for list items */
+#travels-row ul li:hover {
+  background-color: #81e781;      /* light green hover */
+  color: white;
+  cursor: pointer;
+}
+
+/* ---------------------- RESPONSIVE ---------------------- */
+/* On screens smaller than 768px, stack boxes vertically */
+@media (max-width: 768px) {
+  #travels-row {
+    flex-direction: column;       /* stack vertically */
+    align-items: center;          /* center the stacked boxes */
+    gap: 25px;                    /* slightly larger gap for vertical layout */
+  }
+
+  #travels-row .travel-box {
+    width: 80%;                   /* make boxes wider for mobile screens */
+    max-width: 90%;
+  }
+}
