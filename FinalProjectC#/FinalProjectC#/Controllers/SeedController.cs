@@ -45,19 +45,25 @@ namespace FinalProjectC_.Controllers
             if (!banks.Any())
                 return BadRequest("No banks found. Add some banks first.");
 
-            // 3. Create 100 users
+            // 3. Create 100 users (skip if exists)
             var users = new List<User>();
             for (int i = 1; i <= 100; i++)
             {
-                var password = "12345";
-                var passwordHash = Convert.ToBase64String(SHA256.HashData(Encoding.UTF8.GetBytes(password)));
+                string username = $"user{i}";
+                string email = $"user{i}@test.com";
+
+                // Check if user already exists
+                if (await _context.Users.AnyAsync(u => u.Username == username || u.Email == email))
+                    continue; // skip duplicates
+
+                var passwordHash = Convert.ToBase64String(SHA256.HashData(Encoding.UTF8.GetBytes("12345")));
                 var user = new User
                 {
-                    Username = $"user{i}",
-                    Email = $"user{i}@test.com",
+                    Username = username,
+                    Email = email,
                     PasswordHash = passwordHash,
                     CreatedBy = "System",
-                    Roles = new List<Role>(),   // initialize as List
+                    Roles = new List<Role>(),
                     Accounts = new List<Account>()
                 };
 
@@ -84,24 +90,29 @@ namespace FinalProjectC_.Controllers
                 users.Add(user);
             }
 
-            // 4. Specific users: 3,5,97,100 → assign role1, role5, role7
+            // 4. Special users: 3,5,97,100 → assign role1, role5, role7 if they exist
             var specialUserIndices = new[] { 3, 5, 97, 100 };
             foreach (var idx in specialUserIndices)
             {
-                var user = users[idx - 1]; // list is 0-based
-                user.Roles.Clear();
-                foreach (var role in roles.Where(r => r.RoleName == "Role1" || r.RoleName == "Role5" || r.RoleName == "Role7"))
+                var user = users.FirstOrDefault(u => u.Username == $"user{idx}");
+                if (user != null)
                 {
-                    user.Roles.Add(role);
+                    user.Roles.Clear();
+                    foreach (var role in roles.Where(r => r.RoleName == "Role1" || r.RoleName == "Role5" || r.RoleName == "Role7"))
+                        user.Roles.Add(role);
                 }
             }
 
-            // 5. Save users to database
-            _context.Users.AddRange(users);
-            await _context.SaveChangesAsync();
+            // 5. Save to DB
+            if (users.Any())
+            {
+                _context.Users.AddRange(users);
+                await _context.SaveChangesAsync();
+            }
 
-            // 6. Generate JWT tokens
-            var result = users.Select(u => new
+            // 6. Generate JWT tokens for all users (existing + newly created)
+            var allUsers = await _context.Users.Include(u => u.Roles).ToListAsync();
+            var result = allUsers.Select(u => new
             {
                 u.Username,
                 Roles = u.Roles.Select(r => r.RoleName).ToList(),
@@ -109,6 +120,19 @@ namespace FinalProjectC_.Controllers
             }).ToList();
 
             return Ok(result);
+        }
+
+        // Optional: Clear all 100 users to rerun seed
+        [HttpPost("ClearEmployees")]
+        public async Task<IActionResult> ClearEmployees()
+        {
+            var users = await _context.Users.Where(u => u.Username.StartsWith("user")).ToListAsync();
+            if (users.Any())
+            {
+                _context.Users.RemoveRange(users);
+                await _context.SaveChangesAsync();
+            }
+            return Ok(new { Message = "Users cleared" });
         }
     }
 }
