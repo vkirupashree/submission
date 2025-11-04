@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clock Button with Arrow Function</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="timeBtn">--:--:--</button>
+
+    <script>
+        // Arrow function version
+        const updateTime = () => {
+            const now = new Date();
+            const timeString = now.toLocaleString(); // e.g., 11/4/2025, 2:11:22 PM
+            document.getElementById('timeBtn').textContent = timeString;
+
+            // Recursive call using arrow function inside setTimeout
+            setTimeout(() => updateTime(), 1000);
+        };
+
+        // Start updating immediately
+        updateTime();
+    </script>
+
+</body>
+</html>
