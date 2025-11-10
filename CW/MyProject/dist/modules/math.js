@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.PI = void 0;
 exports.add = add;
+// src/modules/math.ts
 function add(a, b) {
   return a + b;
 }

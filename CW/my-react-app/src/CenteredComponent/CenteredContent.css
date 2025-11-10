@@ -1,0 +1,15 @@
+.content-box {
+    background-color: rgb(192, 234, 255);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+ 
+  .content-box h1 {
+    color: rgb(20, 79, 255);
+  }
+ 
+  .content-box p {
+    color: #333;
+  }

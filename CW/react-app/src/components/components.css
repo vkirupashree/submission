@@ -1,0 +1,37 @@
+.header {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.subheader {
+    color: #34495e;
+    margin-bottom: 20px;
+}
+
+.todo-container {
+    background-color: #ffffff;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: inline-block;
+    text-align: left;
+}
+
+.todo-header {
+    margin-bottom: 10px;
+    color: #e67e22;
+}
+
+.todo-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.todo-list li {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.todo-list li:last-child {
+    border-bottom: none;
+}
