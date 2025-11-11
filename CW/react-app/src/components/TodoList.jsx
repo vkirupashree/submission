@@ -7,9 +7,9 @@ const TodoList = () => {
     const dayName = days[today.getDay()];
 
     const todos = [
-        "Finish homework",
-        "Read a book",
-        "Go for a walk"
+        "Come to training",
+        "Read and do hands on",
+        "Go to home"
     ];
 
     return (
