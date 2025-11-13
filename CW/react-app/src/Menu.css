@@ -1,0 +1,36 @@
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0077b6;
+  padding: 15px 30px;
+}
+
+.menu-left, .menu-right {
+  display: flex;
+  gap: 25px;
+}
+
+.menu span {
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.menu span:hover {
+  color: #ffd60a;
+  transform: scale(1.1);
+}
+
+.user-info {
+  color: #0077b6;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.user-info:hover {
+  color: #0096c7;
+  text-decoration: underline;
+}
+

@@ -1,0 +1,46 @@
+/* Full-page soft blue gradient */
+.loggedin-page {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #e0f7fa, #b2ebf2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Container */
+.loggedin-container {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 35px 30px;
+  border-radius: 15px;
+  max-width: 450px;
+  width: 100%;
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+/* Headings */
+.loggedin-container h1 {
+  color: #0077b6;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.loggedin-container h2 {
+  color: #023e8a;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.loggedin-container p {
+  color: #03045e;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+/* Add a subtle hover effect if needed */
+.loggedin-container:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s;
+}

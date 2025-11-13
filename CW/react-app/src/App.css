@@ -97,3 +97,11 @@ body {
 .contact-form button:hover {
   background: #0096c7;
 }
+
+.about-pic {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%; /* makes it circular */
+  object-fit: cover;
+  margin-bottom: 20px;
+}

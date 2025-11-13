@@ -1,0 +1,105 @@
+/* Full-page soft blue background */
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #e0f7fa, #b2ebf2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 20px;
+}
+
+/* Container styling */
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 35px 30px;
+  border-radius: 15px;
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+/* Heading */
+.login-container h2 {
+  color: #0077b6;
+  margin-bottom: 25px;
+  font-size: 2rem;
+}
+
+/* Input fields */
+.login-form input {
+  width: 80%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  border: 2px solid #0077b6;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.login-form input:focus {
+  border-color: #0096c7;
+  box-shadow: 0 0 8px rgba(0, 150, 199, 0.3);
+}
+
+/* Buttons */
+.login-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.login-buttons button {
+  flex: 1;
+  padding: 10px 0;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  background: #0077b6;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.login-buttons button:hover {
+  background: #0096c7;
+  transform: scale(1.03);
+}
+
+/* Home button */
+.login-home-button {
+  margin-top: 15px;
+}
+
+.login-home-button button {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  background: #0096c7;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.login-home-button button:hover {
+  background: #0077b6;
+  transform: scale(1.03);
+}
+
+/* Register link */
+.login-link {
+  margin-top: 20px;
+  color: #023e8a;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 1rem;
+}
+
+.login-link:hover {
+  color: #0077b6;
+}
