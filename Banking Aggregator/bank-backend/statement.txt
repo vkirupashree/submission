@@ -1,0 +1,47 @@
+Write a Problem Statement with all requirements (Implicit&Explicit)
+
+| Entity          | Description                                            | Key Relationships                              |
+| --------------- | ------------------------------------------------------ | ---------------------------------------------- |
+| User            | Represents both customers and bank employees           | One user can have multiple accounts            |
+| Bank            | Represents the bank institution                        | One bank has multiple branches                 |
+| Branch          | Represents a branch of a bank                          | Linked to one bank; can have multiple accounts |
+| Account         | Represents a customer’s bank account                   | Linked to one user and one branch              |
+| Transaction     | Represents deposits, withdrawals, and account closures | Linked to one account                          |
+| Role            | Defines system roles (e.g., Admin, Employee, Customer) | Linked to user permissions                     |
+| Permission      | Defines access capabilities for each role              | Many-to-many with roles                        |
+
+
+Account Types
+
+1.Saving Account
+
+2.Current Account
+
+3.Term Deposit Account
+
+4.Multi-Currency (NRI) Account
+
+| Operation                       | Description                                            | Limitations                                        |
+| ------------------------------- | ------------------------------------------------------ | -------------------------------------------------- |
+| Deposit                         | Add funds to an account                                | Valid only for active accounts                     |
+| Withdraw                        | Remove funds                                           | Must not exceed account balance                    |
+| Check Balance                   | Retrieve current balance                               | Available to account owner and authorized employee |
+| Close Account                   | Mark account as inactive                               | Allowed only if balance = 0                        |
+| Operate Account (POA/Minor)     | Allow a guardian or authorized user to perform actions | Requires linked guardian record                    |
+
+User Types
+1.Normal User (Customer)
+Can open accounts, deposit/withdraw, view balance, request closure.
+
+2.Bank User (Employee)
+Can approve account requests, verify KYC, manage branches, and perform transactions on behalf of customers.
+
+Roles and Permissions
+| Role         | Permissions                                   |
+| ------------ | --------------------------------------------- |
+| Admin    | Full access to users, banks, and transactions |
+| Manager  | Manage branches, approve accounts             |
+| Employee | Manage customers, perform transactions        |
+| Customer | View and operate own accounts                 |
+
+

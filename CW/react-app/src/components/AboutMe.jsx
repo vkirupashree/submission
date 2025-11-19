@@ -7,7 +7,7 @@ export default function AboutMe() {
       <header className="about-header">
         <h1>Hello There! 👋</h1>
         <p className="about-subtitle">
-          I am Kirupashree, a passionate developer and designer creating amazing web experiences.
+          I am Kirupashree, a passionate developer and designer creating amazing web experiences. I developed this webpage, and you can log in using your existing credentials or even register to explore more features.
         </p>
       </header>
 

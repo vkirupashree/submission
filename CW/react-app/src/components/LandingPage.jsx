@@ -13,7 +13,7 @@ export default function LandingPage() {
 </ul>
  
       <div className="landing-content">
-<h1 className="fade-in">Welcome to the Landing Page!</h1>
+<h1 className="fade-in">Welcome to the Landing Page! 🌟💻</h1>
 <p className="fade-in delay-1">
           Experience a seamless login system with roles, secure authentication, and modern UI.
 </p>

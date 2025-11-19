@@ -9,6 +9,9 @@ import CounterButtons from "./CounterButtons";
 import FormContainer from "./FormContainer";
 import TimerWithColor from "./TimerWithColor";
 import MainRow from "./MainRow";
+import ApiButton1 from "./ApiButton1";
+import ApiButton2 from "./ApiButton2";
+import ApiButton3 from "./ApiButton3";
 
 class DemoPage extends React.Component {
   constructor(props) {
@@ -50,7 +53,13 @@ class DemoPage extends React.Component {
         <SubHeader />
         <TodoList />
 
-        <div style={{ marginTop: "50px" }}>
+        <div style={{marginTop: "40px", border: "3px solid #00244aff",
+            borderRadius: "15px",
+            padding: "20px",
+            maxWidth: "40%",
+            margin: "20px auto",
+            //backgroundColor: "#f6f6f6ff",
+            boxSizing: "border-box", }}>
           {[1, 2, 3].map((num) => (
             <button
               key={num}
@@ -60,12 +69,12 @@ class DemoPage extends React.Component {
               Open Popup {num}
             </button>
           ))}
-        </div>
+        
 
         <p style={{ marginTop: "10px", fontSize: "16px" }}>
           Total popup opens: {this.state.popupClickCount}
         </p>
-
+          
         <PopupExample
           show={this.state.showPopup}
           message={this.state.popupMessage}
@@ -73,6 +82,7 @@ class DemoPage extends React.Component {
         />
 
         <ClickButton />
+        </div>
         <CounterButtons />
         <MainRow />
         <TimerWithColor />
@@ -87,12 +97,28 @@ class DemoPage extends React.Component {
             backgroundColor: "#f0f8ff",
             boxSizing: "border-box",
           }}
-        >
+            >
           <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
             Form Container (Redux)
           </h2>
           <FormContainer />
         </div>
+        <div style={{ marginTop: "40px", border: "3px solid #007bff",
+            borderRadius: "15px",
+            padding: "20px",
+            maxWidth: "50%",
+            margin: "20px auto",
+            //backgroundColor: "#f6f6f6ff",
+            boxSizing: "border-box", }}>
+            <h2>API Demo Buttons using Jest & React Testing Library</h2>
+            <h3>ApiButtons Test Status: ✅ All test cases and coverage passed</h3>
+                <div style={{ display: "flex", justifyContent: "center", gap: "15px" }}>
+  <ApiButton1 api={(endpoint) => Promise.resolve("API 1 is called")} />
+  <ApiButton2 api={async (endpoint) => "API 2 is called"} />
+  <ApiButton3 api={() => {}} /> {/* Already handles setTimeout inside */}
+</div>
+            </div>
+
       </div>
     );
   }

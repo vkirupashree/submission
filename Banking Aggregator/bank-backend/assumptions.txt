@@ -1,0 +1,62 @@
+
+1.User
+
+Each user has a unique ID and valid login credentials.
+A user can act as either a bank employee or a customer but not both simultaneously.
+
+2.Bank
+
+Each bank operates independently with its own policies and structure.
+Every bank can manage multiple branches under its name.
+
+3.Branch
+
+Each branch belongs to exactly one bank.
+Branches manage customer accounts and transactions locally.
+
+4.Account
+
+Each account is uniquely linked to one user and one branch.
+Accounts must be verified and approved before activation.
+
+5.Transaction
+
+Every transaction is timestamped and linked to a single account.
+Transactions cannot occur on closed or inactive accounts.
+
+6.Role
+
+Each user must be assigned at least one predefined role.
+Roles determine access levels and available system actions.
+
+7.Permission
+
+Permissions are defined at the role level, not per individual.
+A role can have multiple permissions, and permissions can belong to multiple roles.
+
+
+
+8.Account Types
+
+Each account type follows specific operational rules.
+Customers can hold multiple account types simultaneously.
+
+
+
+9.Operations
+
+All operations must follow system validations and business rules.
+Unauthorized or invalid operations are rejected with appropriate error messages.
+
+
+10.User Types
+
+Normal users interact primarily with their own accounts.
+Bank users (employees) manage customer and branch-level operations.
+
+
+
+11.Roles and Permissions
+
+Each role defines specific access boundaries within the system.
+Only administrators can modify role and permission assignments.
