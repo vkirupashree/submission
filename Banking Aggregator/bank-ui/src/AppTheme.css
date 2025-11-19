@@ -1,33 +1,33 @@
-/* AppTheme.css - Common theme for Banking Aggregator */
+/* AppTheme.css - Purple and Orange Theme for Banking Aggregator */
 
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
-  background: linear-gradient(120deg, #f6f8fa 60%, #e3e9f7 100%);
+  background: linear-gradient(135deg, #f3e8ff 0%, #fff7ed 100%);
   margin: 0;
-  color: #222;
+  color: #2d0a4b;
   min-height: 100vh;
 }
 
- .navbar {
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(90deg, #283593 60%, #1976d2 100%);
+  background: linear-gradient(90deg, #7c3aed 80%, #fb923c 100%);
   color: #fff;
   padding: 0.75rem 2rem;
-  box-shadow: 0 2px 8px rgba(26,35,126,0.08);
+  box-shadow: 0 2px 8px #a78bfa33;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
 }
 
- .navbar-logo {
+.navbar-logo {
   font-size: 1.5rem;
   font-weight: bold;
   letter-spacing: 1px;
-  text-shadow: 1px 2px 8px rgba(25, 118, 210, 0.08);
+  text-shadow: 1px 2px 8px #a78bfa33;
 }
 
- .navbar-links a {
+.navbar-links a {
   color: #fff;
   text-decoration: none;
   margin-left: 2rem;
@@ -38,23 +38,24 @@ body {
   padding: 6px 16px;
   border-radius: 6px;
 }
- .navbar-links a:hover {
-  background: #ffb300;
+
+.navbar-links a:hover {
+  background: #fb923c;
   color: #fff;
 }
 
- .page-container {
+.page-container {
   max-width: 700px;
   margin: 2rem auto;
-  background: #fff;
+  background: #fff7ed;
   border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(26,35,126,0.06);
+  box-shadow: 0 2px 12px #a78bfa33;
   padding: 2rem 2.5rem;
   animation: fadeIn 0.7s;
 }
 
- h2 {
-  color: #1a237e;
+h2 {
+  color: #7c3aed;
   margin-top: 0;
   font-size: 2.1rem;
   letter-spacing: 1px;
@@ -71,9 +72,9 @@ body {
 .auth-container {
   max-width: 400px;
   margin: 3rem auto;
-  background: #f7f9fc;
+  background: #f3e8ff;
   border-radius: 14px;
-  box-shadow: 0 2px 16px rgba(26,35,126,0.10);
+  box-shadow: 0 2px 16px #a78bfa33;
   padding: 2.5rem 2rem 2rem 2rem;
   display: flex;
   flex-direction: column;
@@ -82,7 +83,7 @@ body {
 }
 
 .auth-container h1 {
-  color: #1a237e;
+  color: #7c3aed;
   font-size: 2rem;
   margin-bottom: 1.5rem;
   font-weight: 700;
@@ -100,7 +101,7 @@ body {
 .auth-container input[type="password"],
 .auth-container input[type="text"] {
   padding: 0.7rem 1rem;
-  border: 1.5px solid #bfc7d1;
+  border: 1.5px solid #a78bfa;
   border-radius: 7px;
   font-size: 1rem;
   background: #fff;
@@ -108,11 +109,11 @@ body {
   outline: none;
 }
 .auth-container input:focus {
-  border-color: #1976d2;
+  border-color: #7c3aed;
 }
 
 .auth-container button[type="submit"] {
-  background: linear-gradient(90deg, #1976d2 60%, #64b5f6 100%);
+  background: linear-gradient(90deg, #7c3aed 60%, #fb923c 100%);
   color: #fff;
   border: none;
   border-radius: 7px;
@@ -122,18 +123,18 @@ body {
   letter-spacing: 0.5px;
   margin-top: 0.5rem;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+  box-shadow: 0 2px 8px #a78bfa33;
   transition: background 0.2s, transform 0.1s;
 }
 .auth-container button[type="submit"]:hover {
-  background: linear-gradient(90deg, #1565c0 60%, #42a5f5 100%);
+  background: linear-gradient(90deg, #a78bfa 60%, #fdba74 100%);
   transform: translateY(-2px) scale(1.03);
 }
 
 .auth-container .toggle-btn {
   background: none;
   border: none;
-  color: #1976d2;
+  color: #fb923c;
   font-size: 1rem;
   margin-top: 1.2rem;
   cursor: pointer;
@@ -142,7 +143,7 @@ body {
   transition: color 0.2s;
 }
 .auth-container .toggle-btn:hover {
-  color: #ffb300;
+  color: #7c3aed;
 }
 
 .auth-container .error-message {
@@ -167,4 +168,55 @@ body {
   font-size: 1rem;
   width: 100%;
   text-align: center;
+}
+
+/* Buttons */
+button, .MuiButton-root {
+  background: linear-gradient(90deg, #7c3aed 60%, #fb923c 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5em 1.5em;
+  font-weight: 600;
+  box-shadow: 0 2px 8px #a78bfa33;
+  transition: background 0.3s;
+}
+button:hover, .MuiButton-root:hover {
+  background: linear-gradient(90deg, #a78bfa 60%, #fdba74 100%);
+}
+
+/* Card backgrounds */
+.MuiPaper-root, .card {
+  background: #fff7ed;
+  border: 1px solid #a78bfa33;
+  border-radius: 12px;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: #7c3aed;
+}
+
+/* Links */
+a, .App-link {
+  color: #fb923c;
+  text-decoration: none;
+}
+a:hover {
+  color: #7c3aed;
+  text-decoration: underline;
+}
+
+/* DataGrid (MUI) */
+.MuiDataGrid-root {
+  background: #f3e8ff;
+  color: #2d0a4b;
+}
+.MuiDataGrid-columnHeaders {
+  background: #a78bfa;
+  color: #4c1d95;
+}
+.MuiDataGrid-cell {
+  background: #fff7ed;
+  color: #2d0a4b;
 }

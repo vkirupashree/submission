@@ -1,0 +1,85 @@
+/* ContactUsPage.css - Purple/Orange, Tamil Nadu, Animations */
+
+.contact-root {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(120deg, #f3e8ff 0%, #fff7ed 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  animation: contact-fadein 1.2s cubic-bezier(0.4,0,0.2,1);
+  overflow-x: hidden;
+}
+
+@keyframes contact-fadein {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.contact-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px #a78bfa33;
+  padding: 2.5rem 2.2rem 2rem 2.2rem;
+  margin: 3.5rem auto 2rem auto;
+  max-width: 480px;
+  width: 100%;
+  animation: contact-card-pop 0.8s cubic-bezier(0.4,0,0.2,1);
+  position: relative;
+}
+@keyframes contact-card-pop {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.contact-title {
+  color: #7c3aed;
+  font-weight: 800;
+  font-size: 2.1rem;
+  margin-bottom: 0.7rem;
+  text-align: center;
+}
+
+.contact-punch {
+  font-size: 1.15rem;
+  color: #fb923c;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  animation: contact-punch-fade 2s infinite alternate;
+}
+@keyframes contact-punch-fade {
+  from { color: #fb923c; }
+  to { color: #7c3aed; }
+}
+
+.contact-info {
+  font-size: 1.08rem;
+  color: #2d0a4b;
+  margin-bottom: 1.1rem;
+  text-align: left;
+}
+.contact-info a {
+  color: #fb923c;
+  text-decoration: none;
+  font-weight: 500;
+}
+.contact-info a:hover {
+  color: #7c3aed;
+  text-decoration: underline;
+}
+
+.contact-address {
+  font-size: 1.08rem;
+  color: #4c1d95;
+  margin-bottom: 1.1rem;
+  text-align: left;
+}
+
+.contact-note {
+  margin-top: 2.2rem;
+  color: #a16207;
+  font-size: 0.98rem;
+  text-align: center;
+}

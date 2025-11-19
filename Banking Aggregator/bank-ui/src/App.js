@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider, CssBaseline } from '@mui/material';
 
 import Home from './pages/Home';
 import AboutPage from './pages/AboutPage';
@@ -16,6 +17,7 @@ import ContactUsPage from './pages/ContactUsPage';
 
 import ProtectedRoute from './components/common/ProtectedRoute.jsx';
 import Navbar from './components/common/Navbar.jsx';
+import theme from './theme';
 
 // Role-based dashboard component
 function RoleBasedDashboard() {
@@ -35,56 +37,59 @@ function RoleBasedDashboard() {
 
 const App = () => {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/plans" element={<PlansPage />} />
-        <Route path="/contact" element={<ContactUsPage />} />
-        <Route path="/login" element={<LoginPage />} />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/plans" element={<PlansPage />} />
+          <Route path="/contact" element={<ContactUsPage />} />
+          <Route path="/login" element={<LoginPage />} />
 
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <RoleBasedDashboard />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <RoleBasedDashboard />
+              </ProtectedRoute>
+            }
+          />
 
-        {/* AccountsPage removed, use DashboardPage instead */}
-        <Route
-          path="/transactions"
-          element={
-            <ProtectedRoute>
-              <TransactionsPage />
-            </ProtectedRoute>
-          }
-        />
+          {/* AccountsPage removed, use DashboardPage instead */}
+          <Route
+            path="/transactions"
+            element={
+              <ProtectedRoute>
+                <TransactionsPage />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route
-          path="/manage-users"
-          element={
-            <ProtectedRoute role="Sysadmin">
-              <ManageUsersPage />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/manage-users"
+            element={
+              <ProtectedRoute role="Sysadmin">
+                <ManageUsersPage />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route
-          path="/manage-banks"
-          element={
-            <ProtectedRoute role="Sysadmin">
-              <ManageBanksPage />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/manage-banks"
+            element={
+              <ProtectedRoute role="Sysadmin">
+                <ManageBanksPage />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route path="/register/bank-details" element={<BankDetailsPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </Router>
+          <Route path="/register/bank-details" element={<BankDetailsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 };
 

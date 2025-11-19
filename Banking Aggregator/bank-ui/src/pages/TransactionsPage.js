@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import API_BASE_URL from '../services/apiConfig';
+import './TransactionsPage.css';
 
 const TransactionsPage = () => {
   /**
@@ -69,72 +70,72 @@ const TransactionsPage = () => {
   }
 
   return (
-    <div style={{ maxWidth: 900, margin: '0 auto', padding: 24 }}>
-      <h1>Transactions</h1>
-      <form onSubmit={handleFilter} style={{ marginBottom: 16, display: 'flex', gap: 8, alignItems: 'center' }}>
-        <label>
-          From:
-          <input
-            type="date"
-            value={from}
-            onChange={e => setFrom(e.target.value)}
-            style={{ marginLeft: 4, marginRight: 12 }}
-          />
-        </label>
-        <label>
-          To:
-          <input
-            type="date"
-            value={to}
-            onChange={e => setTo(e.target.value)}
-            style={{ marginLeft: 4, marginRight: 12 }}
-          />
-        </label>
-        <button type="submit" style={{ padding: '6px 16px', borderRadius: 4, background: '#1976d2', color: '#fff', border: 'none', fontWeight: 600 }}>Filter</button>
-      </form>
-      <input
-        type="text"
-        placeholder="Search transactions"
-        value={search}
-        onChange={e => setSearch(e.target.value)}
-        style={{ marginBottom: 16, padding: 6, borderRadius: 4, border: '1px solid #bfc7d1', width: 240 }}
-      />
-      {loading ? (
-        <div style={{ textAlign: 'center', padding: 24 }}>Loading...</div>
-      ) : error ? (
-        <div style={{ color: 'red', textAlign: 'center', padding: 24 }}>{error}</div>
-      ) : (
-        <div style={{ overflowX: 'auto', background: '#fff', borderRadius: 8, boxShadow: '0 2px 8px #0001', marginTop: 12 }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-            <thead style={{ background: '#f5f7fa' }}>
-              <tr>
-                <th style={{ padding: 10, borderBottom: '2px solid #e0e0e0' }}>ID</th>
-                <th style={{ padding: 10, borderBottom: '2px solid #e0e0e0' }}>Account</th>
-                <th style={{ padding: 10, borderBottom: '2px solid #e0e0e0' }}>Type</th>
-                <th style={{ padding: 10, borderBottom: '2px solid #e0e0e0' }}>Amount</th>
-                <th style={{ padding: 10, borderBottom: '2px solid #e0e0e0' }}>Date</th>
-                <th style={{ padding: 10, borderBottom: '2px solid #e0e0e0' }}>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredTransactions.length === 0 ? (
-                <tr><td colSpan={6} style={{ textAlign: 'center', padding: 24, color: '#888' }}>No transactions found.</td></tr>
-              ) : (
-                filteredTransactions.map(tx => (
-                  <tr key={tx.transactionId} style={{ borderBottom: '1px solid #f0f0f0' }}>
-                    <td style={{ padding: 8 }}>{tx.transactionId}</td>
-                    <td style={{ padding: 8 }}>{tx.accountId}</td>
-                    <td style={{ padding: 8 }}>{tx.type}</td>
-                    <td style={{ padding: 8 }}>{tx.amount}</td>
-                    <td style={{ padding: 8 }}>{new Date(tx.transactionDate).toLocaleString()}</td>
-                    <td style={{ padding: 8 }}>{tx.description || ''}</td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
-      )}
+    <div className="transactions-root">
+      <div className="transactions-container">
+        <h1 className="transactions-title">Transactions</h1>
+        <form onSubmit={handleFilter} className="transactions-form">
+          <label>
+            From:
+            <input
+              type="date"
+              value={from}
+              onChange={e => setFrom(e.target.value)}
+            />
+          </label>
+          <label>
+            To:
+            <input
+              type="date"
+              value={to}
+              onChange={e => setTo(e.target.value)}
+            />
+          </label>
+          <button type="submit">Filter</button>
+        </form>
+        <input
+          type="text"
+          placeholder="Search transactions"
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          className="transactions-search"
+        />
+        {loading ? (
+          <div className="transactions-loading">Loading...</div>
+        ) : error ? (
+          <div className="transactions-error">{error}</div>
+        ) : (
+          <div className="transactions-table-container">
+            <table className="transactions-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Account</th>
+                  <th>Type</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredTransactions.length === 0 ? (
+                  <tr><td colSpan={6} className="transactions-table-empty">No transactions found.</td></tr>
+                ) : (
+                  filteredTransactions.map(tx => (
+                    <tr key={tx.transactionId}>
+                      <td>{tx.transactionId}</td>
+                      <td>{tx.accountId}</td>
+                      <td>{tx.type}</td>
+                      <td>{tx.amount}</td>
+                      <td>{new Date(tx.transactionDate).toLocaleString()}</td>
+                      <td>{tx.description || ''}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -1,0 +1,150 @@
+/* AboutPage.css - Purple & Orange Bank Theme */
+
+.about-root {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(120deg, #f3e8ff 0%, #fff7ed 100%);
+  animation: about-fadein 1.2s cubic-bezier(0.4,0,0.2,1);
+  overflow-x: hidden;
+}
+
+@keyframes about-fadein {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.about-hero {
+  width: 100vw;
+  background: linear-gradient(90deg, #7c3aed 70%, #fb923c 100%);
+  color: #fff;
+  padding: 3.5rem 0 2.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 24px #a78bfa33;
+}
+
+.about-hero-content {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  animation: about-fadein 1.5s 0.2s both;
+}
+
+.about-hero-icon {
+  font-size: 3.5rem;
+  margin-bottom: 0.7rem;
+  color: #fff7ed;
+  filter: drop-shadow(0 2px 8px #fb923c88);
+  animation: about-bounce 1.8s infinite alternate;
+}
+@keyframes about-bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-12px); }
+}
+
+.about-hero h1 {
+  font-size: 2.7rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+.about-hero h1 span {
+  color: #fdba74;
+}
+.about-hero-tagline {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #fff7ed;
+  margin-bottom: 0;
+}
+
+.about-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 2vw 3rem 2vw;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.about-section {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px #a78bfa22;
+  padding: 2.2rem 2.5rem;
+  margin-bottom: 0.5rem;
+  animation: about-fadein 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+.about-section h2 {
+  color: #7c3aed;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+}
+
+.about-section ul {
+  font-size: 1.08rem;
+  color: #4c1d95;
+  margin-bottom: 0;
+  line-height: 1.7;
+  padding-left: 24px;
+}
+
+.about-features-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+  margin-top: 1.2rem;
+}
+
+.about-feature-card {
+  flex: 1 1 200px;
+  min-width: 200px;
+  max-width: 240px;
+  background: linear-gradient(120deg, #f3e8ff 60%, #fff7ed 100%);
+  border-radius: 14px;
+  box-shadow: 0 2px 8px #a78bfa22;
+  padding: 1.2rem 1rem 1.1rem 1rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  color: #4c1d95;
+  animation: about-fadein 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+.about-feature-card:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 6px 24px #fb923c33;
+}
+.about-feature-card svg {
+  font-size: 2.1rem;
+  color: #fb923c;
+  margin-bottom: 0.4rem;
+}
+.about-feature-card span {
+  display: block;
+  font-weight: 700;
+  color: #7c3aed;
+  margin-bottom: 0.2rem;
+  font-size: 1.1rem;
+}
+.about-feature-card p {
+  font-size: 0.98rem;
+  color: #4c1d95;
+  margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .about-main {
+    padding: 2.5rem 1vw 3rem 1vw;
+  }
+  .about-section {
+    padding: 1.5rem 1rem;
+  }
+  .about-features-list {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+}

@@ -1,0 +1,142 @@
+/* TransactionsPage.css - Purple/Orange, Neat, Animated */
+
+.transactions-root {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(120deg, #f3e8ff 0%, #fff7ed 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  animation: tx-fadein 1.2s cubic-bezier(0.4,0,0.2,1);
+  overflow-x: hidden;
+}
+
+@keyframes tx-fadein {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.transactions-container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 2.5rem auto 2rem auto;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px #a78bfa33;
+  padding: 2.5rem 2.2rem 2rem 2.2rem;
+  animation: tx-fadein 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+.transactions-title {
+  color: #7c3aed;
+  font-weight: 800;
+  font-size: 2.1rem;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+.transactions-form {
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.transactions-form label {
+  color: #4c1d95;
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+.transactions-form input[type="date"] {
+  margin-left: 4px;
+  margin-right: 12px;
+  border-radius: 6px;
+  border: 1.5px solid #a78bfa;
+  padding: 6px 10px;
+  font-size: 1rem;
+  background: #f3e8ff;
+  color: #2d0a4b;
+  transition: border 0.2s;
+}
+.transactions-form input[type="date"]:focus {
+  border-color: #7c3aed;
+}
+.transactions-form button {
+  padding: 7px 20px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #7c3aed 60%, #fb923c 100%);
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px #a78bfa33;
+  transition: background 0.3s;
+}
+.transactions-form button:hover {
+  background: linear-gradient(90deg, #a78bfa 60%, #fdba74 100%);
+}
+
+.transactions-search {
+  margin-bottom: 1.2rem;
+  padding: 7px 12px;
+  border-radius: 6px;
+  border: 1.5px solid #a78bfa;
+  width: 260px;
+  font-size: 1rem;
+  background: #fff7ed;
+  color: #2d0a4b;
+  transition: border 0.2s;
+}
+.transactions-search:focus {
+  border-color: #fb923c;
+}
+
+.transactions-table-container {
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #a78bfa22;
+  margin-top: 1.2rem;
+  animation: tx-fadein 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.transactions-table th {
+  padding: 12px 10px;
+  background: #a78bfa;
+  color: #4c1d95;
+  font-weight: 700;
+  border-bottom: 2px solid #f3e8ff;
+  font-size: 1.08rem;
+}
+.transactions-table td {
+  padding: 10px 8px;
+  color: #2d0a4b;
+  border-bottom: 1px solid #f3e8ff;
+  font-size: 1.01rem;
+}
+.transactions-table tr:hover {
+  background: #f3e8ff;
+  transition: background 0.2s;
+}
+.transactions-table-empty {
+  text-align: center;
+  padding: 24px;
+  color: #888;
+}
+.transactions-loading {
+  text-align: center;
+  padding: 24px;
+  color: #7c3aed;
+  font-weight: 600;
+}
+.transactions-error {
+  color: #d32f2f;
+  text-align: center;
+  padding: 24px;
+  font-weight: 600;
+}

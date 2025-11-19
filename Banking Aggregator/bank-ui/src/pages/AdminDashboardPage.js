@@ -3,6 +3,7 @@ import { fetchBanks } from '../services/bankService';
 import { fetchAccounts } from '../services/accountService';
 import { fetchUsers, deleteUser } from '../services/userService';
 import { register } from '../services/authService';
+import './AdminDashboardPage.css';
 
 /**
  * @typedef {Object} Bank
@@ -105,42 +106,39 @@ const AdminDashboardPage = () => {
     const renderAccountsAndUsers = () => (
         <>
             {/* CREATE USER */}
-            <div style={{ maxWidth: 500, margin: '0 auto 32px auto', background: '#f9fafe', borderRadius: 14, boxShadow: '0 4px 16px #0002', padding: 28, border: '1px solid #e3e8f0' }}>
-                <h2 style={{ fontSize: '1.1rem', marginBottom: 16, color: '#1976d2', fontWeight: 600, textAlign: 'center' }}>Create New User</h2>
+            <div className="admin-create-user">
+                <h2>Create New User</h2>
                 <form onSubmit={handleCreateUser} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-                    <input name="firstName" value={newUser.firstName} onChange={handleNewUserChange} placeholder="First Name" required style={{ padding: 8, borderRadius: 6, border: '1px solid #bcd' }} />
-                    <input name="lastName" value={newUser.lastName} onChange={handleNewUserChange} placeholder="Last Name" required style={{ padding: 8, borderRadius: 6, border: '1px solid #bcd' }} />
-                    <input name="email" value={newUser.email} onChange={handleNewUserChange} placeholder="Email" type="email" required style={{ padding: 8, borderRadius: 6, border: '1px solid #bcd' }} />
-                    <input name="password" value={newUser.password} onChange={handleNewUserChange} placeholder="Password" type="password" required style={{ padding: 8, borderRadius: 6, border: '1px solid #bcd' }} />
-                    <select name="role" value={newUser.role} onChange={handleNewUserChange} style={{ padding: 8, borderRadius: 6, border: '1px solid #bcd' }}>
+                    <input name="firstName" value={newUser.firstName} onChange={handleNewUserChange} placeholder="First Name" required />
+                    <input name="lastName" value={newUser.lastName} onChange={handleNewUserChange} placeholder="Last Name" required />
+                    <input name="email" value={newUser.email} onChange={handleNewUserChange} placeholder="Email" type="email" required />
+                    <input name="password" value={newUser.password} onChange={handleNewUserChange} placeholder="Password" type="password" required />
+                    <select name="role" value={newUser.role} onChange={handleNewUserChange}>
                         <option value="User">User</option>
                         <option value="Sysadmin">Sysadmin</option>
                     </select>
-                    <button type="submit" disabled={creatingUser} style={{ background: '#1976d2', color: '#fff', border: 'none', borderRadius: 6, padding: '8px 0', fontWeight: 600 }}>
+                    <button type="submit" disabled={creatingUser}>
                         {creatingUser ? 'Creating...' : 'Create User'}
                     </button>
-                    {createUserError && <div style={{ color: 'red', marginTop: 4 }}>{createUserError}</div>}
-                    {createUserSuccess && <div style={{ color: 'green', marginTop: 4 }}>{createUserSuccess}</div>}
+                    {createUserError && <div className="admin-create-error">{createUserError}</div>}
+                    {createUserSuccess && <div className="admin-create-success">{createUserSuccess}</div>}
                 </form>
             </div>
-
-            {/* ACCOUNTS & USERS */}
-            <div style={{ display: 'flex', gap: 32, marginTop: 40, flexWrap: 'wrap', justifyContent: 'center' }}>
-
+            <div className="admin-tables">
                 {/* ACCOUNTS TABLE */}
-                <div style={{ flex: 1, minWidth: 340, maxWidth: 500, background: '#f9fafe', borderRadius: 14, boxShadow: '0 4px 16px #0002', padding: 28, border: '1px solid #e3e8f0' }}>
-                    <h2 style={{ fontSize: '1.15rem', color: '#1976d2', textAlign: 'center' }}>All Accounts</h2>
+                <div className="admin-table-card">
+                    <h2>All Accounts</h2>
                     <div style={{ overflowX: 'auto' }}>
-                        <table style={{ width: '100%', borderCollapse: 'separate', borderSpacing: 0 }}>
+                        <table className="admin-table">
                             <thead>
-                                <tr style={{ background: 'linear-gradient(90deg, #1976d2 60%, #42a5f5 100%)', color: '#fff' }}>
-                                    <th style={{ padding: 10 }}>Account #</th>
-                                    <th style={{ padding: 10 }}>User ID</th>
-                                    <th style={{ padding: 10 }}>Bank</th>
-                                    <th style={{ padding: 10 }}>Branch</th>
-                                    <th style={{ padding: 10 }}>State</th>
-                                    <th style={{ padding: 10 }}>Type</th>
-                                    <th style={{ padding: 10 }}>Balance</th>
+                                <tr>
+                                    <th>Account #</th>
+                                    <th>User ID</th>
+                                    <th>Bank</th>
+                                    <th>Branch</th>
+                                    <th>State</th>
+                                    <th>Type</th>
+                                    <th>Balance</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -159,20 +157,19 @@ const AdminDashboardPage = () => {
                         </table>
                     </div>
                 </div>
-
                 {/* USERS TABLE */}
-                <div style={{ flex: 1, minWidth: 340, maxWidth: 500, background: '#f9fafe', borderRadius: 14, boxShadow: '0 4px 16px #0002', padding: 28, border: '1px solid #e3e8f0' }}>
-                    <h2 style={{ fontSize: '1.15rem', color: '#1976d2', textAlign: 'center' }}>All Users</h2>
+                <div className="admin-table-card">
+                    <h2>All Users</h2>
                     <div style={{ overflowX: 'auto' }}>
-                        <table style={{ width: '100%', borderCollapse: 'separate', borderSpacing: 0 }}>
+                        <table className="admin-table">
                             <thead>
-                                <tr style={{ background: 'linear-gradient(90deg, #1976d2 60%, #42a5f5 100%)', color: '#fff' }}>
-                                    <th style={{ padding: 10 }}>User ID</th>
-                                    <th style={{ padding: 10 }}>Full Name</th>
-                                    <th style={{ padding: 10 }}>Email</th>
-                                    <th style={{ padding: 10 }}>Role</th>
-                                    <th style={{ padding: 10 }}>Status</th>
-                                    <th style={{ padding: 10 }}>Action</th>
+                                <tr>
+                                    <th>User ID</th>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -206,53 +203,45 @@ const AdminDashboardPage = () => {
                         </table>
                     </div>
                 </div>
-
             </div>
         </>
     );
 
     return (
-        <div className="page-container" style={{ maxWidth: 800, margin: '0 auto', padding: '1.2rem 0.5rem' }}>
-            <h1 style={{ fontSize: '1.5rem', marginBottom: 18 }}>Sysadmin Dashboard</h1>
-
-            <div style={{ background: '#f8f8f8', padding: 6, borderRadius: 6, marginBottom: 12 }}>
-                Banks loaded: {banks.length}
-                <pre style={{ maxHeight: 80, overflow: 'auto' }}>{JSON.stringify(banks, null, 2)}</pre>
+        <div className="admin-root">
+          <div className="admin-container">
+            <h1 className="admin-title">Sysadmin Dashboard</h1>
+            <div className="admin-summary">
+              <div className="admin-summary-card">Banks loaded: {banks.length}</div>
+              <div className="admin-summary-card">Accounts loaded: {accounts.length}</div>
+              <div className="admin-summary-card">Users loaded: {users.length}</div>
             </div>
-
-            <div style={{ background: '#f8f8f8', padding: 6, borderRadius: 6, marginBottom: 12 }}>
-                Accounts loaded: {accounts.length}
-                <pre style={{ maxHeight: 80, overflow: 'auto' }}>{JSON.stringify(accounts, null, 2)}</pre>
+            <div className="admin-bank-cards">
+              {banks.length === 0 ? (
+                <div>No banks found.</div>
+              ) : (
+                banks.map(bank => (
+                  <div
+                    key={bank.bankId}
+                    className="admin-bank-card"
+                    onClick={() => setExpandedBankId(expandedBankId === bank.bankId ? null : bank.bankId)}
+                  >
+                    <h2>{bank.bankName}</h2>
+                    <div><b>IFSC:</b> {bank.ifscCode}</div>
+                    {bank.branches?.length > 0 && (
+                      <div><b>Branches:</b> {bank.branches.length}</div>
+                    )}
+                    {expandedBankId === bank.bankId && (
+                      <div className="admin-bank-accounts">
+                        Accounts: {getAccountCount(bank.bankId)}
+                      </div>
+                    )}
+                  </div>
+                ))
+              )}
             </div>
-
-            {/* BANK CARDS */}
-            <div style={{ display: 'flex', gap: 12, overflowX: 'auto', marginBottom: 18 }}>
-                {banks.length === 0 ? (
-                    <div>No banks found.</div>
-                ) : (
-                    banks.map(bank => (
-                        <div
-                            key={bank.bankId}
-                            style={{ minWidth: 160, background: '#fff', borderRadius: 10, padding: 12, boxShadow: '0 2px 8px #0001', cursor: 'pointer' }}
-                            onClick={() => setExpandedBankId(expandedBankId === bank.bankId ? null : bank.bankId)}
-                        >
-                            <h2 style={{ color: '#1976d2', fontSize: '1rem', fontWeight: 700 }}>{bank.bankName}</h2>
-                            <div><b>IFSC:</b> {bank.ifscCode}</div>
-                            {bank.branches?.length > 0 && (
-                                <div><b>Branches:</b> {bank.branches.length}</div>
-                            )}
-
-                            {expandedBankId === bank.bankId && (
-                                <div style={{ color: '#1976d2', marginTop: 6 }}>
-                                    Accounts: {getAccountCount(bank.bankId)}
-                                </div>
-                            )}
-                        </div>
-                    ))
-                )}
-            </div>
-
             {renderAccountsAndUsers()}
+          </div>
         </div>
     );
 };
